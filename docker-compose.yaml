@@ -1,0 +1,38 @@
+# Stage 1: Build React frontend
+FROM node:latest AS frontend
+
+WORKDIR /app/frontend
+
+COPY ./frontend/package*.json ./
+
+RUN npm install
+
+COPY ./frontend .
+
+RUN npm run build
+
+# Stage 2: Build Go backend
+FROM golang:latest AS backend
+
+WORKDIR /app/backend
+
+COPY . .
+
+# Download and install any required third-party dependencies
+RUN go get -d -v ./...
+
+# Install the Go application
+RUN go install -v ./...
+
+# Stage 3: Final image with only necessary files
+FROM golang:latest
+
+WORKDIR /app
+
+COPY --from=frontend /app/frontend/build /app/frontend/build
+COPY --from=backend /go/bin/your-app-binary-name /app/your-app-binary-name
+
+EXPOSE 8080
+
+# Command to run your application
+CMD ["./chaintraced-go-backend"]
