@@ -21,7 +21,6 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
 - Go installed on your machine
 - [Gorilla Mux](https://github.com/gorilla/mux) package for routing
 - [rs/cors](https://github.com/rs/cors) package for handling CORS
-- PostgreSQL database (optional, if you want to store messages persistently)
 
 ### Installation
 
@@ -30,3 +29,10 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
    ```bash
    git clone https://github.com/yourusername/yourproject.git
    cd yourproject
+
+2. Install the Dependencies
+
+   ```bash
+   go get -u github.com/gorilla/mux
+   go get -u github.com/rs/cors
+
