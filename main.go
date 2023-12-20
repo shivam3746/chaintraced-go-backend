@@ -33,8 +33,10 @@ func main() {
 	r.HandleFunc("/messages", postMessage).Methods("POST")
 	r.HandleFunc("/messages/{id}/reply", replyToMessage).Methods("POST")
 	r.HandleFunc("/messages/{id}", deleteMessage).Methods("DELETE")
+	r.HandleFunc("/messages/{id}", editMessage).Methods("PUT") 
 
 	corsHandler := cors.Default().Handler(r)
+
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -110,12 +112,11 @@ func replyToMessage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Assign a new ID and update the original message with the reply
+	// Assigning a new ID and the original message with the reply
 	reply.ID = len(messages) + 1
-	reply.Author = "Replier" // You can set the author as needed
+	reply.Author = "Replier"
 	messages = append(messages, reply)
 
-	// You can customize the reply logic based on your requirements
 	if originalMessage.Author == "ImportantAuthor" {
 		reply.Text = "This is an important reply!"
 	}
@@ -123,3 +124,31 @@ func replyToMessage(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(reply)
 }
+
+// Editing a message
+func editMessage(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	id := params["id"]
+
+	var updatedMessage Message
+	if err := json.NewDecoder(r.Body).Decode(&updatedMessage); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	//ID Check
+	for i, msg := range messages {
+		if fmt.Sprintf("%d", msg.ID) == id {
+			// Updating existing message
+			messages[i].Text = updatedMessage.Text
+			messages[i].Author = updatedMessage.Author
+
+			w.Header().Set("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(messages[i])
+			return
+		}
+	}
+
+	http.NotFound(w, r)
+}
+
