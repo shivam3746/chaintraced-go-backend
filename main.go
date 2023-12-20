@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 type Message struct {
@@ -33,13 +34,15 @@ func main() {
 	r.HandleFunc("/messages/{id}/reply", replyToMessage).Methods("POST")
 	r.HandleFunc("/messages/{id}", deleteMessage).Methods("DELETE")
 
+	corsHandler := cors.Default().Handler(r)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
 
 	log.Printf("Server listening on :%s", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), corsHandler))
 }
 
 // Get all messages
