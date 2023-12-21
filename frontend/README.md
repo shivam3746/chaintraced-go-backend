@@ -14,13 +14,11 @@ A Message Board app front-end written in React.
 
 ## About
 
-Provide a concise description of your project. What does it do? What problem does it solve?
+This is a front-end for a Message Board Application.
 
 ## Getting Started
 
 ### Prerequisites
-
-List any software or tools that need to be installed before running the project.
 
 - [Node.js](https://nodejs.org/)
 - [Yarn](https://yarnpkg.com/)
@@ -46,5 +44,13 @@ List any software or tools that need to be installed before running the project.
    yarn dev
   ```
    The application will start on port 5173 by default.
+
+### Contributing
+
+We welcome contributions! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
