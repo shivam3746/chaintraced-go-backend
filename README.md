@@ -36,3 +36,11 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
    go get -u github.com/gorilla/mux
    go get -u github.com/rs/cors
 
+## Usage
+
+### Run Application
+
+   ```bash
+   go run main.go
+  ```
+   The application will start on port 8080 by default.
