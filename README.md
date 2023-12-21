@@ -55,8 +55,6 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
 
 ### Examples
 
-## Examples
-
 - **Create a Message:**
 
   ```bash
