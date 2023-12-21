@@ -118,7 +118,7 @@ func replyToMessage(w http.ResponseWriter, r *http.Request) {
 
 	// Assigning a new ID and the original message with the reply
 	reply.ID = len(messages) + 1
-	reply.Author = "Replier"
+	reply.Author = "Replier" //Currently static
 	messages = append(messages, reply)
 
 	if originalMessage.Author == "ImportantAuthor" {
