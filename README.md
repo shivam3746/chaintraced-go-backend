@@ -79,3 +79,12 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
 
   ```bash
   curl -X PUT -H "Content-Type: application/json" -d '{"text":"Updated text", "author": "Updated Author"}' http://localhost:8080/messages/3
+
+### Contributing
+
+We welcome contributions! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
