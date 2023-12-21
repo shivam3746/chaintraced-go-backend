@@ -44,3 +44,12 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
    go run main.go
   ```
    The application will start on port 8080 by default.
+
+### API Endpoints
+
+- **GET /messages**: Retrieve all messages
+- **POST /messages**: Create a new message
+- **POST /messages/{id}/reply**: Reply to a specific message
+- **DELETE /messages/{id}**: Delete a specific message
+- **PUT /messages/{id}**: Edit a specific message
+
