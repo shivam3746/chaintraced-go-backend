@@ -27,8 +27,8 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/yourproject.git
-   cd yourproject
+   git clone https://github.com/shivam3746/chaintraced-go-backend
+   cd chaintraced-go-backend
 
 2. Install the Dependencies
 
