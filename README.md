@@ -53,3 +53,31 @@ This is a simple Message Board API implemented in Go using the Gorilla Mux route
 - **DELETE /messages/{id}**: Delete a specific message
 - **PUT /messages/{id}**: Edit a specific message
 
+### Examples
+
+## Examples
+
+- **Create a Message:**
+
+  ```bash
+  curl -X POST -H "Content-Type: application/json" -d '{"text":"Hello, World!", "author": "John Doe"}' http://localhost:8080/messages
+
+- **Get all Messages:**
+
+  ```bash
+  curl http://localhost:8080/messages
+
+- **Reply to a Message:**
+
+  ```bash
+  curl -X POST -H "Content-Type: application/json" -d '{"text":"Reply text", "author": "Reply Author"}' http://localhost:8080/messages/1/reply
+
+- **Delete a Message:**
+
+  ```bash
+  curl -X DELETE http://localhost:8080/messages/2
+
+- **Edit a Message:**
+
+  ```bash
+  curl -X PUT -H "Content-Type: application/json" -d '{"text":"Updated text", "author": "Updated Author"}' http://localhost:8080/messages/3
