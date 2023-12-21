@@ -9,7 +9,6 @@ A Message Board app front-end written in React.
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Scripts](#scripts)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -32,5 +31,20 @@ List any software or tools that need to be installed before running the project.
 
    ```bash
    git clone https://github.com/shivam3746/chaintraced-go-backend.git
+   cd chaintraced-go-backend/frontend
+
+2. Install the Dependencies
+
+   ```bash
+   yarn
+
+## Usage
+
+### Run Application
+
+   ```bash
+   yarn dev
+  ```
+   The application will start on port 5173 by default.
 
 
