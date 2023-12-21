@@ -33,10 +33,14 @@ func main() {
 	r.HandleFunc("/messages", postMessage).Methods("POST")
 	r.HandleFunc("/messages/{id}/reply", replyToMessage).Methods("POST")
 	r.HandleFunc("/messages/{id}", deleteMessage).Methods("DELETE")
-	r.HandleFunc("/messages/{id}", editMessage).Methods("PUT") 
+	r.HandleFunc("/messages/{id}", editMessage).Methods("PUT")
 
-	corsHandler := cors.Default().Handler(r)
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:5173"},
+		AllowedMethods: []string{"GET", "POST", "DELETE", "PUT"},
+	})
 
+	corsHandler := c.Handler(r)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -151,4 +155,3 @@ func editMessage(w http.ResponseWriter, r *http.Request) {
 
 	http.NotFound(w, r)
 }
-
