@@ -3,7 +3,7 @@ import theme from "../../../AppTheme";
 import { styled } from "@mui/system";
 
 export const StyledTextArea = styled(InputBase)`
-  width: 100%;
+  width: 70%;
   height: 100%;
   resize: none;
   border: none;

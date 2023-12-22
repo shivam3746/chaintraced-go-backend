@@ -1,13 +1,12 @@
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { Header } from './Header';
-import {
-  StyledButton,
-  StyledCancelButton,
-  StyledTextArea,
-} from './styles/CustomStyles';
+import { StyledTextArea } from './styles/CustomStyles';
 import { useEffect, useState } from 'react';
 import { StoreMessages } from './StoreMessage';
 import { MessageResponse } from './constants';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import CancelIcon from '@mui/icons-material/Cancel';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export const Message = () => {
   const [addMessage, setAddMessage] = useState<boolean>(false);
@@ -34,7 +33,8 @@ export const Message = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setStoreMessage([...storeMessage, data]);
+        const newData = { ...data, replyMode: false };
+        setStoreMessage([...storeMessage, newData]);
       });
     setAddMessage(false);
     setMessage('');
@@ -61,39 +61,48 @@ export const Message = () => {
             justifyContent: 'space-between',
           }}
         >
-          <Header authorName='Shivam Srivastava' />
+          <Header authorName='Anonymous User' />
           {/* <Message /> */}
           {!addMessage && (
-            <StyledButton variant='contained' onClick={handleAddPost}>
-              New Message
-            </StyledButton>
+            <IconButton onClick={handleAddPost}>
+              <AddBoxIcon sx={{ fontSize: '50px', color: '#3559E0' }} />
+            </IconButton>
           )}
         </Box>
         {addMessage && (
-          <Box sx={{ m: 3 }}>
+          <Box
+            sx={{
+              m: 2,
+              backgroundColor: '#FFF',
+              borderRadius: '1rem',
+              width: '50%',
+              height: '20%',
+              p: 2,
+              alignItems: 'center',
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <StyledTextArea
+              placeholder='Write a message...'
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                handleMessageInput(event);
+              }}
+            />
             <Box>
-              <StyledTextArea
-                placeholder='Write a message...'
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  handleMessageInput(event);
-                }}
-              />
-            </Box>
-            <Box sx={{ textAlign: 'right', my: 3 }}>
-              <StyledCancelButton
-                variant='contained'
+              {message !== '' && (
+                <IconButton onClick={handleMessageSubmit}>
+                  <AddCircleIcon sx={{ color: '#3559E0', fontSize: '3rem' }} />
+                </IconButton>
+              )}
+              <IconButton
                 onClick={() => {
                   setAddMessage(false);
                   setMessage('');
                 }}
               >
-                Cancel
-              </StyledCancelButton>
-              {message !== '' && (
-                <StyledButton variant='contained' onClick={handleMessageSubmit}>
-                  Post
-                </StyledButton>
-              )}
+                <CancelIcon sx={{ color: '#BF3131', fontSize: '3rem' }} />
+              </IconButton>
             </Box>
           </Box>
         )}

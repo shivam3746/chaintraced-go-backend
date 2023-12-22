@@ -10,7 +10,7 @@ export const Header = ({ authorName }: HeaderProps) => {
         <Grid container direction='row'>
           <Grid item xs={4}>
             <Avatar sx={{ width: 50, height: 50, backgroundColor: '#B6BBC4' }}>
-              SS
+              AU
             </Avatar>
           </Grid>
           <Grid item xs={8}>

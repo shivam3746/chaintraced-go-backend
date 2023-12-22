@@ -12,9 +12,10 @@ import (
 )
 
 type Message struct {
-	ID     int    `json:"id"`
-	Text   string `json:"text"`
-	Author string `json:"author"`
+	ID      int    `json:"id"`
+	Text    string `json:"text"`
+	Author  string `json:"author"`
+	IsReply bool   `json:"replyMode"`
 }
 
 var messages []Message
@@ -22,9 +23,7 @@ var messages []Message
 func main() {
 	// Populating test messages
 	messages = []Message{
-		{ID: 1, Text: "Hello, World!", Author: "John Doe"},
-		{ID: 2, Text: "Testing the API", Author: "Jane Smith"},
-		{ID: 3, Text: "Golang is awesome!", Author: "Alice"},
+		{ID: 1, Text: "Hello, World!", Author: "John Doe", IsReply: false},
 	}
 
 	r := mux.NewRouter()
@@ -119,6 +118,7 @@ func replyToMessage(w http.ResponseWriter, r *http.Request) {
 	// Assigning a new ID and the original message with the reply
 	reply.ID = len(messages) + 1
 	reply.Author = "Replier" //Currently static
+	reply.IsReply = true
 	messages = append(messages, reply)
 
 	if originalMessage.Author == "ImportantAuthor" {
